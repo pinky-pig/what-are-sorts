@@ -6,11 +6,14 @@ const tabs = ['Vue', 'React', 'Angular', 'Solid', 'Svelte']
 const activeIndex = ref(0)
 const selectedText = computed(() => tabs[activeIndex.value])
 
-const users = new Array(10).fill(true).map((_, index) => ({
-  id: index,
-  name: 'Tom',
-  email: '163@qq.com',
-}))
+const list = [
+  { id: 0, name: '冒泡排序', level: '⭐' },
+  { id: 1, name: '插入排序', level: '⭐⭐' },
+  { id: 2, name: '快速排序', level: '⭐⭐⭐' },
+  { id: 3, name: '归并排序', level: '⭐⭐' },
+  { id: 4, name: '堆排序  ', level: '⭐⭐⭐' },
+  { id: 5, name: '选择排序', level: '⭐⭐' },
+]
 </script>
 
 <template>
@@ -42,32 +45,32 @@ const users = new Array(10).fill(true).map((_, index) => ({
     </TBox>
 
     <!-- table -->
-    <TBox flex-direction="column" :width="55" border-style="round">
+    <TBox flex-direction="column" :width="45" border-style="round">
       <TBox>
         <TBox width="10%">
           <TText>ID</TText>
         </TBox>
 
-        <TBox width="45%">
+        <TBox width="50%">
           <TText>Name</TText>
         </TBox>
 
-        <TBox width="45%">
+        <TBox width="40%">
           <TText>Email</TText>
         </TBox>
       </TBox>
 
-      <TBox v-for="user in users" :key="user.id">
+      <TBox v-for="user in list" :key="user.id">
         <TBox width="10%">
           <TText>{{ user.id }}</TText>
         </TBox>
 
-        <TBox width="45%">
+        <TBox width="50%">
           <TText>{{ user.name }}</TText>
         </TBox>
 
-        <TBox width="45%">
-          <TText>{{ user.email }}</TText>
+        <TBox width="40%">
+          <TText>{{ user.level }}</TText>
         </TBox>
       </TBox>
     </TBox>

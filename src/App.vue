@@ -4,14 +4,16 @@ import { computed } from 'vue'
 import Header from './components/Header.vue'
 import Home from './components/Home.vue'
 import Catalog from './components/Catalog.vue'
-import { useGame } from './composables'
+import Detail from './components/Detail.vue'
+import { useRouter } from './composables'
 
-const { playStatus } = useGame()
+const { router } = useRouter()
 const activeComponent = computed(() => {
   return {
-    unplayed: Home,
-    playing: Catalog,
-  }[playStatus.value]
+    Home,
+    Catalog,
+    Detail,
+  }[router.value]
 })
 </script>
 
