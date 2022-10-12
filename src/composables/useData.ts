@@ -20,7 +20,7 @@ export function toggleRouter(): any[] {
 
 export const CATALOG = {
   排序: [
-    { id: 0, name: '冒泡排序', level: '⭐', component: 'bubble' },
+    { id: 0, name: '冒泡排序', level: '⭐', component: 'Bubble' },
     { id: 1, name: '插入排序', level: '⭐⭐', component: 'Other' },
     { id: 2, name: '快速排序', level: '⭐⭐⭐', component: 'Quick' },
     { id: 3, name: '归并排序', level: '⭐⭐', component: 'Other' },

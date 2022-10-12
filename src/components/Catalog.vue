@@ -14,7 +14,6 @@ const selectedText = computed(() => tabs[kindIndex.value])
 // 进入这个页面的时候，就将目录信息存入闭包全局变量
 watch(() => kindIndex.value, () => {
   kindFn(selectedText.value)
-  console.log(selectedText.value)
 }, {
   immediate: true,
 })
@@ -25,7 +24,6 @@ const list = computed(() => CATALOG[selectedText.value])
 watch(() => kindIndex.value, () => {
   rowIndex.value = 0
   rowFn(rowIndex.value)
-  console.log(rowIndex.value)
 }, {
   immediate: true,
 })
