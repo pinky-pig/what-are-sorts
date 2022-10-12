@@ -3,11 +3,18 @@ import { useInput } from '@temir/core'
 import { ROUTER } from '.'
 
 const router = ref('Home')
+// 用一个闭包缓存路由
+export function toggleRouter(): any[] {
+  function fn(status?: 'Home' | 'Catalog' | 'Detail'): string {
+    if (status)
+      router.value = status
+    return router.value
+  }
+  return [fn, router]
+}
 
 export function useRouter() {
-  function toggle(status: 'Home' | 'Catalog' | 'Detail') {
-    router.value = status
-  }
+  const [toggle] = toggleRouter()
 
   useInput((input, { escape }) => {
     // 返回主页面
