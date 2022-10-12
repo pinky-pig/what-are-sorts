@@ -7,21 +7,18 @@ const [_, r] = toggleRouter()
 
 <template>
   <TBox
-    width="50"
+    width="85"
     height="2"
-    :padding-x="6"
     :justify-content="
       r === 'Home'
-        ? 'space-between'
-        : 'center'"
+        ? 'center'
+        : 'space-between'"
   >
     <TText color="yellow">
-      temir sort !!
+      🌈 Learn !!
     </TText>
-    <TText v-if="r !== 'Home'">
-      <TText color="yellow">
-        {{ r }}
-      </TText>
+    <TText v-if="r !== 'Home'" color="yellow">
+      {{ r }}
     </TText>
   </TBox>
 </template>

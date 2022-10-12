@@ -1,23 +1,31 @@
 <script lang="ts" setup>
 import { TBox, TText } from '@temir/core'
+import { computed } from 'vue'
+import { CATALOG, toggleCatalog } from '../composables'
+import Bubble from './Bubble.vue'
+import Quick from './Quick.vue'
+const [, kindIndex, , rowIndex] = toggleCatalog()
+
+console.log(kindIndex.value)
+console.log(rowIndex.value)
+
+const detail = 'Bubble'
+const activeComponent = computed(() => {
+  return {
+    Bubble,
+    Quick,
+  }[detail]
+})
 </script>
 
 <template>
   <TBox
     :width="65"
     :height="30"
-    border-style="bold"
     flex-direction="column"
     justify-content="center"
     align-items="center"
   >
-    <TBox>
-      <TText>
-        Selected Text :
-        <TText color="red">
-          detail
-        </TText>
-      </TText>
-    </TBox>
+    <component :is="activeComponent" />
   </TBox>
 </template>

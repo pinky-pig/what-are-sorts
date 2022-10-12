@@ -1,24 +1,12 @@
-import { ref } from 'vue'
 import { useInput } from '@temir/core'
-import { ROUTER } from '.'
-
-const router = ref('Home')
-// 用一个闭包缓存路由
-export function toggleRouter(): any[] {
-  function fn(status?: 'Home' | 'Catalog' | 'Detail'): string {
-    if (status)
-      router.value = status
-    return router.value
-  }
-  return [fn, router]
-}
+import { ROUTER, toggleRouter } from '.'
 
 export function useRouter() {
-  const [toggle] = toggleRouter()
+  const [toggle, router] = toggleRouter()
 
-  useInput((input, { escape }) => {
+  useInput((input, keys) => {
     // 返回主页面
-    if (escape)
+    if (keys.escape)
       toggle('Home')
 
     // 返回上一级路由页面
@@ -29,7 +17,7 @@ export function useRouter() {
     }
 
     // 进入下一路由页面
-    if (['s', 'S'].includes(input)) {
+    if (keys.return) {
       const index = ROUTER.findIndex(it => it === router.value)
       toggle(ROUTER[index + 1] || ROUTER[index])
     }

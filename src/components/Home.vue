@@ -26,7 +26,7 @@ import { TBox, TText } from '@temir/core'
         border-color="yellow"
       >
         <TText color="yellow">
-          Start (S)
+          Start (Enter)
         </TText>
       </TBox>
 

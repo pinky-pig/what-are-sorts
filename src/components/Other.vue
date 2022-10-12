@@ -13,7 +13,7 @@ import { TBox, TText } from '@temir/core'
   >
     <TBox>
       <TText>
-        Bubble
+        Other
       </TText>
     </TBox>
   </TBox>
