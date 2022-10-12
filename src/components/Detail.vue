@@ -6,9 +6,10 @@ import Bubble from './Bubble.vue'
 import Quick from './Quick.vue'
 const [, kindIndex, , rowIndex] = toggleCatalog()
 
-console.log(kindIndex.value)
-console.log(rowIndex.value)
+console.log(
 
+  CATALOG[kindIndex.value][rowIndex.value],
+)
 const detail = 'Bubble'
 const activeComponent = computed(() => {
   return {
