@@ -6,12 +6,12 @@ export function useRouter() {
 
   useInput((input, keys) => {
     // 返回主页面
-    if (keys.escape)
+    const retryKey = ['r', 'R']
+    if (retryKey.includes(input))
       toggle('Home')
 
     // 返回上一级路由页面
-    const retryKey = ['r', 'R']
-    if (retryKey.includes(input)) {
+    if (keys.escape) {
       const index = ROUTER.findIndex(it => it === router.value)
       toggle(ROUTER[index - 1] || ROUTER[index])
     }
