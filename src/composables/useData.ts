@@ -1,5 +1,6 @@
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
+/** *************** 路由 *************** */
 type routeType = ['Home', 'Catalog', 'Detail']
 export const ROUTER: routeType = [
   'Home',
@@ -17,7 +18,9 @@ export function toggleRouter(): any[] {
   }
   return [fn, router]
 }
+/** *************** End *************** */
 
+/** *************** 目录 *************** */
 export const CATALOG = {
   排序: [
     { id: 0, name: '冒泡排序', level: '⭐', component: 'Bubble' },
@@ -43,7 +46,6 @@ export const CATALOG = {
     { id: 6, name: '二叉查找树', level: '⭐⭐', component: 'Other' },
   ],
 }
-
 // 用一个闭包缓存目录
 const kindIndex = ref(CATALOG[0])
 const rowIndex = ref(0)
@@ -56,3 +58,29 @@ export function toggleCatalog(): any[] {
   }
   return [kindFn, kindIndex, rowFn, rowIndex]
 }
+/** *************** End *************** */
+
+/** *************** 背景 *************** */
+export function useArea() {
+  const basic = 21
+  const backgroundIcon = '⬛'
+  const arena = ref<string[]>([])
+
+  function initArena() {
+    arena.value = Array.from({ length: basic * basic }, () => backgroundIcon)
+  }
+  const grids = computed(() => {
+    const result: any = []
+    while (result.length < basic)
+      result.push(arena.value.slice(basic * result.length, basic * (result.length + 1)))
+
+    return result
+  })
+  return {
+    basic,
+    grids,
+    backgroundIcon,
+    initArena,
+  }
+}
+/** *************** End *************** */
