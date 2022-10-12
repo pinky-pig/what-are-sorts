@@ -2,18 +2,16 @@
 import { computed, ref } from 'vue'
 import { TBox, TText } from '@temir/core'
 import { TTab, TTabs } from '@temir/tab'
-const tabs = ['Vue', 'React', 'Angular', 'Solid', 'Svelte']
+import { CATALOG } from '../composables'
+// tabs 内容
+const tabs = Object.keys(CATALOG)
+// 当前选中的tab内容
 const activeIndex = ref(0)
 const selectedText = computed(() => tabs[activeIndex.value])
+// tab下的页面
+const list = computed(() => CATALOG[selectedText.value])
 
-const list = [
-  { id: 0, name: '冒泡排序', level: '⭐' },
-  { id: 1, name: '插入排序', level: '⭐⭐' },
-  { id: 2, name: '快速排序', level: '⭐⭐⭐' },
-  { id: 3, name: '归并排序', level: '⭐⭐' },
-  { id: 4, name: '堆排序  ', level: '⭐⭐⭐' },
-  { id: 5, name: '选择排序', level: '⭐⭐' },
-]
+const key = ref(0)
 </script>
 
 <template>
@@ -45,32 +43,29 @@ const list = [
     </TBox>
 
     <!-- table -->
-    <TBox flex-direction="column" :width="45" border-style="round">
-      <TBox>
+    <TBox flex-direction="column" :width="45">
+      <TBox
+        v-for="user in list"
+        :key="user.id"
+        :border-color="user.id === key ? 'yellow' : 'gray'"
+        :border-style="user.id === key ? 'doubleSingle' : 'classic'"
+      >
         <TBox width="10%">
-          <TText>ID</TText>
+          <TText>
+            {{ user.id }}
+          </TText>
         </TBox>
 
         <TBox width="50%">
-          <TText>Name</TText>
+          <TText>
+            {{ user.name }}
+          </TText>
         </TBox>
 
         <TBox width="40%">
-          <TText>Email</TText>
-        </TBox>
-      </TBox>
-
-      <TBox v-for="user in list" :key="user.id">
-        <TBox width="10%">
-          <TText>{{ user.id }}</TText>
-        </TBox>
-
-        <TBox width="50%">
-          <TText>{{ user.name }}</TText>
-        </TBox>
-
-        <TBox width="40%">
-          <TText>{{ user.level }}</TText>
+          <TText>
+            {{ user.level }}
+          </TText>
         </TBox>
       </TBox>
     </TBox>
