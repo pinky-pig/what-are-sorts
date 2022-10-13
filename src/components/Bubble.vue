@@ -21,7 +21,6 @@ const symbolFn = v => Symbol(v)
       <!-- 数字 around 分布 -->
       <TBox
         :width="60"
-        border-style="round"
         :padding="2"
         flex-direction="row"
         justify-content="space-around"
@@ -44,6 +43,15 @@ const symbolFn = v => Symbol(v)
           </TText>
         </TBox>
       </TBox>
+    </TBox>
+
+    <TBox
+      :height="5"
+      justify-content="center"
+    >
+      <TText>
+        步骤
+      </TText>
     </TBox>
     <!-- 按钮 -->
     <TBox
