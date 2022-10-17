@@ -1,0 +1,46 @@
+<script lang="ts" setup>
+import { TBox, TText, useInput } from '@temir/core'
+import { onMounted } from 'vue'
+import { useBody, useSwap } from '../composables'
+const symbolFn = i => Symbol(i)
+
+const { grids, basicX, basicY } = useSwap()
+const { bodyL, bodyR, control } = useBody()
+
+function normalizeItem(i: number) {
+  if (bodyL.value.includes(Number(i)))
+    return 'yellow'
+  if (bodyR.value.includes(Number(i)))
+    return 'green'
+  else
+    return 'white'
+}
+
+onMounted(() => {
+  control()
+})
+</script>
+
+<template>
+  <TBox
+    :width="42"
+    :height="30"
+    border-style="round"
+    flex-direction="column"
+  >
+    <TBox
+      v-for="(_, x) in basicX"
+      :key="symbolFn(x)"
+      flex-direction="row"
+    >
+      <TBox
+        v-for="(__, y) in basicY"
+        :key="symbolFn(y)"
+      >
+        <TText :color="normalizeItem(grids[x][y])">
+          {{ '██' }}
+        </TText>
+      </TBox>
+    </TBox>
+  </TBox>
+</template>

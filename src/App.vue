@@ -5,6 +5,7 @@ import Header from './components/Header.vue'
 import Home from './components/Home.vue'
 import Catalog from './components/Catalog.vue'
 import Detail from './components/Detail.vue'
+import Swap from './components/Swap.vue'
 import { useRouter } from './composables'
 
 const { router } = useRouter()
@@ -26,6 +27,6 @@ const activeComponent = computed(() => {
     border-style="double"
   >
     <Header />
-    <component :is="activeComponent" />
+    <component :is="Swap" />
   </TBox>
 </template>
