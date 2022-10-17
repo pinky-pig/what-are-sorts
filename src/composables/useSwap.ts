@@ -31,7 +31,7 @@ export function useBody(l = [53, 63], r = [55, 65]) {
   // 初始化body数组
   const f = l[l.length - 1] - r[r.length - 1]
   const bodyL = f < 0 ? ref(l) : ref(r)
-  const bodyR = f < 0 ? ref(r.reverse()) : ref(l.reverse())
+  const bodyR = f < 0 ? ref(r) : ref(l)
 
   /**
    * 移动某个对象
@@ -55,8 +55,8 @@ export function useBody(l = [53, 63], r = [55, 65]) {
 
     // bodyL
     const runLA = ['up', 'up']
-    runLA.splice(2, 0, ...Array.from({ length: Math.abs(f) }, () => 'right'))
-    runLA.push(...Array.from({ length: bodyL.value.length + 1 }, () => 'down'))
+    // runLA.splice(2, 0, ...Array.from({ length: Math.abs(f) }, () => 'right'))
+    // runLA.push(...Array.from({ length: bodyL.value.length + 1 }, () => 'down'))
     runLA.forEach((i: string, idx: number) => {
       setTimeout(() => {
         move(bodyL.value, d[i])
@@ -65,8 +65,8 @@ export function useBody(l = [53, 63], r = [55, 65]) {
 
     // bodyR
     const runRA = ['down', 'down']
-    runRA.splice(2, 0, ...Array.from({ length: Math.abs(f) }, () => 'left'))
-    runRA.push(...Array.from({ length: bodyR.value.length + 1 }, () => 'up'))
+    // runRA.splice(2, 0, ...Array.from({ length: Math.abs(f) }, () => 'left'))
+    // runRA.push(...Array.from({ length: bodyR.value.length + 1 }, () => 'up'))
     runRA.forEach((i: string, idx: number) => {
       setTimeout(() => {
         move(bodyR.value, d[i])

@@ -5,28 +5,38 @@ import { useBody, useSwap } from '../composables'
 const symbolFn = i => Symbol(i)
 
 const { grids, basicX, basicY } = useSwap()
-const { bodyL, bodyR, control } = useBody()
+
+const numberList = [3, 5, 6, 1, 9, 8, 7, 4, 2]
+const numBody = numberList.map((item, index) => {
+  return Array.from({ length: numberList[index] }, (i, idx) => (380 + index * 2) - basicX * idx)
+})
+const { bodyL, bodyR, control } = useBody(numBody[0], numBody[5])
 
 function normalizeItem(i: number) {
   if (bodyL.value.includes(Number(i)))
     return 'yellow'
   if (bodyR.value.includes(Number(i)))
     return 'green'
+  if (numBody.flat().includes(Number(i)))
+    return 'blue'
   else
     return 'white'
 }
 
 onMounted(() => {
   control()
+  console.log(bodyL.value)
+  console.log(bodyR.value)
 })
 </script>
 
 <template>
   <TBox
-    :width="42"
+    :width="66"
     :height="30"
     border-style="round"
     flex-direction="column"
+    justify-content="flex-end"
   >
     <TBox
       v-for="(_, x) in basicX"
