@@ -10,7 +10,7 @@ const numberList = [3, 5, 6, 1, 9, 8, 7, 4, 2]
 const numBody = numberList.map((item, index) => {
   return Array.from({ length: numberList[index] }, (i, idx) => (380 + index * 2) - basicX * idx)
 })
-const { bodyL, bodyR, control } = useBody(numBody[0], numBody[5])
+const { bodyL, bodyR, control } = useBody(numBody[0].reverse(), numBody[5].reverse())
 
 function normalizeItem(i: number) {
   if (bodyL.value.includes(Number(i)))
@@ -25,8 +25,6 @@ function normalizeItem(i: number) {
 
 onMounted(() => {
   control()
-  console.log(bodyL.value)
-  console.log(bodyR.value)
 })
 </script>
 
