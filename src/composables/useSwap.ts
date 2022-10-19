@@ -1,7 +1,7 @@
 import { computed, ref } from 'vue'
 
-const basicX = 20
-const basicY = 20
+const basicX = 30
+const basicY = 30
 export function useSwap() {
   const arena = ref<string[]>([])
 
